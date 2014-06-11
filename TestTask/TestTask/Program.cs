@@ -18,13 +18,14 @@ namespace ConsoleApplicationTest
                 "http://pikabu.ru",
                 "http://www.fc-zenit.ru/",
                 "https://vk.com/svyadey",
-                "http://pikabu.ru/story/detskie_obidyi_2316261",
-                "http://touchin.ru/"
+                "http://touchin.ru/",
+                "http://www.fc-zenit.ru/main/" // на этой ссылке все обламывается, причем картинки скачиваются. Сервер слишком часто возвращает ошибку,
+                //по-моему, это не очень нормально
             };
 
             Parallel.ForEach(urls, DownloadFiles);
 
-            Console.WriteLine("Загрузка закончена");
+            Console.WriteLine("Download has finished");
             Console.ReadKey();
         }
 
@@ -32,7 +33,7 @@ namespace ConsoleApplicationTest
         {
             string data;
             Console.WriteLine(site);
-            Console.WriteLine("Загрузка страницы");
+            Console.WriteLine("Downloading page");
             using (var client = new WebClient())
             {
                 using (var stream = client.OpenRead(site))
@@ -44,7 +45,7 @@ namespace ConsoleApplicationTest
                 }
             }
 
-            Console.WriteLine("Загрузка картинок");
+            Console.WriteLine("Downloading pictures");
 
             string directory = new Uri(site).Host;
             if (!Directory.Exists(directory))
@@ -77,7 +78,7 @@ namespace ConsoleApplicationTest
                         {
                             Console.WriteLine(e.Message + "(Incorrect url)");
                         }
-                        Console.WriteLine("{0} загружен", value.name);
+                        Console.WriteLine("{0} downloaded", value.name);
                     });
 
             }
