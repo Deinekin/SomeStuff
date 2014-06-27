@@ -69,8 +69,7 @@ namespace Client
                 string pathServer = @"c:\\newDir";
                 string pathClient = @"c:\\newDir1";
 
-                if (Directory.Exists(pathClient))
-                    Directory.Delete(pathClient, true);
+                Directory.Delete(pathClient, true);
 
                 CopyFiles(pathServer, pathClient);
                 Console.WriteLine("We have just updated client's folder structure");
