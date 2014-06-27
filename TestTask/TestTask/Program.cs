@@ -76,7 +76,7 @@ namespace ConsoleApplicationTest
                         }
                         catch (WebException e)
                         {
-                            Console.WriteLine(e.Message + "(Incorrect url)");
+                            Console.WriteLine(e.Message + "(Incorrect url) : \n {0}", value.url);
                         }
                         Console.WriteLine("{0} downloaded", value.name);
                     });
