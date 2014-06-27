@@ -15,12 +15,10 @@ namespace Server
         {
             var bytes = new Byte[256];
             string data = null;
-
             TcpClient client = client_obj as TcpClient;
-
             data = null;
-            NetworkStream stream = client.GetStream();
 
+            NetworkStream stream = client.GetStream();
             int i;
 
             while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)

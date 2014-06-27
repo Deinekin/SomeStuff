@@ -28,17 +28,16 @@ namespace Client
             {
                 var port = 32000;
                 var client = new TcpClient(server, port);
-
                 var data = System.Text.Encoding.ASCII.GetBytes(message);
                 var stream = client.GetStream();
+
                 stream.Write(data, 0, data.Length);
                 stream.Flush();
 
                 data = new Byte[256];
-
                 var responseData = string.Empty;
-
                 var bytes = stream.Read(data, 0, data.Length);
+
                 responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
                 Console.WriteLine("Received: {0}", responseData);
 
@@ -59,7 +58,6 @@ namespace Client
         {
             Console.WriteLine("Enter an IP address (you need 127.0.0.1 for success, but you can try anything else): \n");
             var address = Console.ReadLine();
-            
             var match = Regex.Match(address, @"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}");
 
             if (match.Success && address == "127.0.0.1")
